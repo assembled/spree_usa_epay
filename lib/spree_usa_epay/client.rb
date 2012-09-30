@@ -68,7 +68,7 @@ module SpreeUsaEpay
       end
     end
 
-    def void(response_code, gateway_options)
+    def void(response_code, creditcard, gateway_options)
       response = request(:void_transaction, { "Token" => security_token(gateway_options), "RefNum" => response_code })
       success = response[:void_transaction_response][:void_transaction_return] #just returns true
       ActiveMerchant::Billing::Response.new(success, "", {}, {})
